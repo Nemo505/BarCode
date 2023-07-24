@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('price');
-            $table->binary('barcode')->nullable();
-            $table->string('description');
+            $table->string('barcode')->nullable();
+            $table->text('description');
             $table->timestamps();
         });
     }
