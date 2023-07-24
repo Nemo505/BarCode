@@ -9,12 +9,18 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="w-4/5 m-auto">
+<body class="w-4/5 m-auto ">
     <div class="text-right p-5">
-        <button type="button" style="padding: 8px; border-radius: 30%; border-width: 2px; background-color: rgb(242, 255, 127);">New</button>
+        <a href="{{ route("products.create") }}">
+            <button
+                class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button">
+                New
+            </button>
+        </a>
     </div>
    
-    <table class="border-separate w-4/5 m-auto border border-slate-400 ...">
+    <table class="border-collapse w-4/5 m-auto border border-slate-400 text-center bg-white shadow-md rounded ...">
         <thead>
             <tr>
                 <th class="border border-slate-300 ...">ID</th>
@@ -27,6 +33,7 @@
         <tbody>
             @foreach ($products as $product)
             <tr>
+                <td class="border border-slate-300...">{{$product->id}}.</td>
                 <td class="border border-slate-300...">{{$product->name}}</td>
                 <td class="border border-slate-300...">{{$product->price}}</td>
                 <td class="border border-slate-300...">

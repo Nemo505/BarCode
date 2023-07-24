@@ -9,7 +9,22 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::orderbydesc('id')->get();
+        $products = Product::orderBy('id', 'asc')->get();
         return view('products/index', ["products" => $products]);
+    }
+
+    public function create()
+    {
+       return view('products/create');
+    }
+
+    public function store(Request $request)
+    {
+        $product = new Product();
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->desc;
+        $product->save();
+        return redirect('');
     }
 }
