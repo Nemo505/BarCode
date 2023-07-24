@@ -27,15 +27,14 @@ class ProductController extends Controller
         if ($this->productCodeExists($number)) {
             $number = mt_rand(10000000, 99999999);
         }
-        $numberImg = $number.'.png';
         $barcodeImg = base64_decode(DNS2D::getBarcodePNGPath($number, 'PDF417'));
-        \Storage::disk('public_uploads')->put($numberImg, $barcodeImg);
+        \Storage::disk('public')->put('img/'.$number, $barcodeImg);
    
 
         $product = new Product();
         $product->name = $request->name;
         $product->price = $request->price;
-        $product->barcode = asset("");
+        $product->barcode = asset($number.'PDF417').'png';
         $product->description = $request->desc;
         $product->save();
         return redirect('');
